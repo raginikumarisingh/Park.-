@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>v.Ragini Kumari- Digital Portfolio</title>
+<style>
+:root {
+  --blue-primary: #2979ff;
+  --blue-light: #90caf9;
+  --white: #ffffff;
+  --dark-bg: #181f29;
+  --dark-secondary: #202a3b;
+  --dark-text: #f3f6fb;
+  --light-bg: #f8faff;
+  --light-secondary: #ffffff;
+  --light-text: #1a2233;
+  --transition-time: 0.3s;
+}
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--light-text);
+  transition: background-color var(--transition-time), color var(--transition-time);
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow-x: hidden;
+}
+
+body.dark { color: var(--dark-text); }
+
+/* Gradient Background */
+body {
+  background: linear-gradient(270deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+  background-size: 800% 800%;
+  animation: gradientBG 15s ease infinite;
+}
+body.dark {
+  background: linear-gradient(270deg, #141e30, #243b55, #2c3e50, #4b6cb7);
+}
+
+@keyframes gradientBG {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+
+.container {
+  max-width: 900px;
+  width: 100%;
+  background-color: var(--light-secondary);
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 36px rgba(41, 121, 255, 0.08);
+  transition: background-color var(--transition-time);
+  position: relative;
+  z-index: 2;
+}
+body.dark .container {
+  background-color: var(--dark-secondary);
+  box-shadow: 0 2px 30px rgba(41, 121, 255, 0.3);
+}
+
+.toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: var(--blue-primary);
+  border: none;
+  color: var(--white);
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color var(--transition-time);
+  z-index: 3;
+}
+.toggle-btn:hover { background-color: var(--blue-light); }
+
+h1,h2,h3 {margin:0;}
+h1 {font-size:2.5rem; font-weight:900; text-align:center; margin-bottom:0.25rem;}
+h2 {font-weight:600; color:var(--blue-primary); text-align:center; margin-bottom:1rem;}
+p.intro {text-align:center; margin-bottom:2rem;}
+
+.profile {
+  display: flex; flex-wrap: wrap; justify-content:center; align-items:center; gap:2rem; margin-bottom:2rem;
+}
+.profile-pic {
+  width:160px; height:160px; border-radius:50%; object-fit:cover;
+  border:3px solid var(--blue-primary); box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+
+.nav-buttons {
+  display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; max-width:400px; margin:2rem auto;
+}
+.nav-btn {
+  padding:12px 20px; background-color:var(--blue-primary); border:none; color:#fff;
+  font-weight:bold; border-radius:12px; cursor:pointer; text-align:center;
+  transition:transform 0.3s, background-color 0.3s;
+}
+.nav-btn:hover {background-color:var(--blue-light); transform:translateY(-3px);}
+
+section {margin-bottom:4rem; padding-top:2rem; animation:slideIn 0.5s ease;}
+@keyframes slideIn {from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+
+.certificates {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1.5rem;
+  margin-top:1.5rem;
+}
+.certificate-card {
+  background:var(--light-bg);
+  border-radius:15px;
+  padding:1rem;
+  text-align:center;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
+  transition:transform 0.3s;
+}
+body.dark .certificate-card {
+  background:var(--dark-secondary);
+}
+.certificate-card:hover {
+  transform:scale(1.03);
+}
+.certificate-card img {
+  max-width:100%;
+  border-radius:10px;
+  margin-bottom:0.5rem;
+}
+.certificate-card p {
+  margin:0;
+  font-weight:bold;
+}
+.resume-buttons {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1rem;
+  margin-top:1rem;
+}
+section ul {
+  padding-left:1.2rem;
+}
+#skills ul li {
+  margin-bottom:1rem;
+}
+
+.interests {
+  background: var(--light-bg);
+  padding: 1rem 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  font-weight: 600;
+  color: var(--blue-primary);
+}
+body.dark .interests {
+  background: var(--dark-secondary);
+  color: var(--dark-text);
+}
+
+/* Particle & Canvas Background */
+#particles-js, #bgCanvas {
+  position: fixed; top:0; left:0; width:100%; height:100%; z-index:1;
+}
+</style>
+</head>
+<body>
+
+<!-- Canvas Star Animation -->
+<canvas id="bgCanvas"></canvas>
+
+<!-- Particle.js Container -->
+<div id="particles-js"></div>
+
+<div class="container">
+  <button class="toggle-btn" id="toggleThemeBtn">🌙</button>
+
+  <header>
+    <div class="profile">
+      <img src="https://i.postimg.cc/NjPPGP2b/IMG-20250919-WA0019.jpg" alt="v.Ragini Kumari" class="profile-pic">
+      <div>
+        <h1>v.Ragini Kumari</h1>
+        <h2>Digital Portfolio</h2>
+        <p class="intro">Hi! I’m Ragini, a Computer Science student.<br />
+        I’m passionate about coding, technology, and solving problems. I love learning new skills, building projects, and exploring innovative ideas.<br />
+        I’m curious, driven, and always eager to grow in the tech world.</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="scrollToSection('skills')">Skills</button>
+    <button class="nav-btn" onclick="scrollToSection('contact')">Contact</button>
+    <button class="nav-btn" onclick="scrollToSection('interests')">Interests</button>
+    <button class="nav-btn" onclick="scrollToSection('certificates')">Certificates</button>
+  </div>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h3>Skills</h3>
+    <ul>
+      <li>📊 Excel, PowerPoint, Word, Tally</li>
+    </ul>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h3>Contact</h3>
+    <ul>
+      <li>📧 Email: <a href="mailto:preciousprecious0466@gmail.com">preciousprecious0466@gmail.com</a></li>
+      <li>📞 Phone: 9361485367</li>
+      <li>📸 Instagram: <a href="https://instagram.com/ms_ragixx!" target="_blank">@ms_ragixx!</a></li>
+    </ul>
+  </section>
+
+  <!-- Interests -->
+  <section id="interests">
+    <h3>Interests</h3>
+    <div class="interests">
+      <p>📚 Reading Books</p>
+      <p>📝 Creating Blogs and Websites</p>
+    </div>
+  </section>
+
+  <!-- Certificates -->
+  <section id="certificates">
+    <h3>Certificates</h3>
+    <div class="certificates">
+      <div class="certificate-card">
+        <a href="https://i.postimg.cc/qB9zC2WL/IMG-20250919-WA0020.jpg" target="_blank">
+          <img src="https://i.postimg.cc/qB9zC2WL/IMG-20250919-WA0020.jpg" alt="MongoDB Basics Certificate">
+        </a>
+        <p>MongoDB Basics Certificate</p>
+      </div>
+    </div>
+  </section>
+  Resume 
+  <img
+  src="https://i.postimg.cc/Dw46PQzw/White-simple-student-CV-resume-20250919-115208-0000.png" alt="resume">
+
+  <section id="ending" style="text-align:center; margin:4rem 0 2rem;">
+    <h3>💡 Let’s Build the Future Together!</h3>
+  </section>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script>
+// Toggle theme
+const toggleBtn = document.getElementById('toggleThemeBtn');
+const bodyElement = document.body;
+toggleBtn.addEventListener('click', () => {
+  const isDark = bodyElement.classList.toggle('dark');
+  toggleBtn.textContent = isDark ? '☀️' : '🌙';
+  localStorage.setItem('portfolioTheme', isDark ? 'dark' : 'light');
+});
+window.onload = () => {
+  const savedTheme = localStorage.getItem('portfolioTheme');
+  if (savedTheme === 'dark') {
+    bodyElement.classList.add('dark');
+    toggleBtn.textContent = '☀️';
+  }
+};
+
+// Scroll to section
+function scrollToSection(id){
+  const section = document.getElementById(id);
+  if(section) section.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// Particles.js
+particlesJS('particles-js', {
+  "particles": {
+    "number": {"value": 80},
+    "size": {"value": 3},
+    "move": {"speed": 2},
+    "line_linked": {"enable": true}
+  }
+});
+
+// Canvas Star Animation
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let stars = Array.from({length:150}, () => ({
+  x: Math.random()*canvas.width,
+  y: Math.random()*canvas.height,
+  r: Math.random()*2,
+  d: Math.random()*0.5
+}));
+function animateStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s=>{
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    ctx.fillStyle = "rgba(255,255,255,0.8)";
+    ctx.fill();
+    s.y += s.d;
+    if(s.y>canvas.height) s.y=0;
+  });
+  requestAnimationFrame(animateStars);
+}
+animateStars();
+
+// Resize canvas
+window.addEventListener('resize', ()=>{canvas.width=window.innerWidth; canvas.height=window.innerHeight;});
+</script>
+</body>
+    </html>
